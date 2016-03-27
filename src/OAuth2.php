@@ -216,8 +216,12 @@ class OAuth2
                 } else {
                     $error = $json->error;
                 }
-            } elseif (!empty($json->msg) && !empty($json->ret)) {
-                $error = $json->msg;
+            } elseif (!empty($json->ret)) {
+                if (!empty($json->msg)) {
+                    $error = $json->msg;
+                } else {
+                    $error = sprintf('Error code %d', $json->ret);
+                }
             } elseif ($response->getStatusCode() >= 400) {
                 $error = sprintf('HTTP status code %d', $response->getStatusCode());
             }
@@ -244,6 +248,9 @@ class OAuth2
                 throw new InvalidArgumentException('Not configuration openid');
             }
             $params['openid'] = $openid['openid'];
+            if (!empty($openid['client_id']) && $openid['client_id'] != $this->getClientId()) {
+                throw new InvalidArgumentException('client_id mismatch');
+            }
         }
         if (empty($params['oauth_consumer_key'])) {
             $params['oauth_consumer_key'] = $this->getClientId();
