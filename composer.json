@@ -1,0 +1,23 @@
+{
+    "name": "lianyue/qq-api",
+    "description": "QQ api client",
+    "keywords": ["qq", "oauth2", "oauth", "api", "sdk", "connect", "open", "client", "map", "ip"],
+    "license": "Apache2",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Lian Yue",
+            "email": "admin@lianyue.org",
+            "homepage": "http://www.lianyue.org/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+       "psr-4": {
+           "LianYue\\QQApi\\": "src/"
+       }
+   },
+}
