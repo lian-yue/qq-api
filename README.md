@@ -60,7 +60,7 @@ http://wiki.open.qq.com/wiki/website/API%E5%88%97%E8%A1%A8
         print_r($oauth2->getUserInfo()->getJson(true));
 
         // 其他api调用
-        print_r($this->api('GET', '/rest/2.0/passport/users/getInfo')->response()->getJson(false));
+        print_r($this->api('GET', '/user/get_user_info')->response()->getJson(false));
     } catch (QQApiException $e) {
 
         // 获取重定向链接
